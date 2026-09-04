@@ -1,7 +1,7 @@
-# for_each を使ってプレフィックス付きバケットを一括管理
+# for_each を使ってプレフィックス付きバケットを一括管理（すべて小文字にする）
 resource "aws_s3_bucket" "app_buckets" {
   for_each = var.bucket_name_suffixes
-  bucket   = "corporate-projectTest-${each.value}"
+  bucket   = "corporate-project-test-${each.value}"
 }
 
 # バージョニングの有効化
