@@ -5,8 +5,8 @@ resource "aws_s3_bucket "app_buckets" {
 }
 
 # バージョニングの有効化
-resource "aws_s3_bucket_versioning" "app_bucket_versioning" {
-  for_each = aws_s3_bucket.app_buckets
+resource "aws_s3_bucket" "app_buckets" {
+  for_each = var.bucket_name_suffixes
   bucket   = each.value.id
   versioning_configuration {
     status = "Enabled"
