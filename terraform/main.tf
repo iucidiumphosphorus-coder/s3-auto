@@ -14,8 +14,8 @@ resource "aws_s3_bucket" "app_buckets" {
 }
 
 # パブリックアクセスの完全ブロック
-resource "aws_s3_bucket_public_access_block" "app_bucket_public_access" {
-  for_each                = aws_s3_bucket.app_buckets
+resource "aws_s3_bucket" "app_buckets" {
+  for_each = var.bucket_name_suffixes
   bucket                  = each.value.id
   block_public_acls       = true
   block_public_policy     = true
