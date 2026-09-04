@@ -24,6 +24,7 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::950177941522:role/github-actions-s3-role
           aws-region: us-east-1
+          audience: sts.amazonaws.com
           aws-debug: true
 
       - name: Setup Terraform
