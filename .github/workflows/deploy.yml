@@ -18,7 +18,16 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
+        
+      - name: Get OIDC Token and Check Claim
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const token = await core.getIDToken('sts.amazonaws.com');
+            console.log("--- OIDC TOKEN JWT (Payload part) ---");
+            const payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+            console.log(JSON.stringify(payload, null, 2));
+            
       - name: Configure AWS Credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
